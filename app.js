@@ -188,4 +188,11 @@ deleteBtn.addEventListener('click', () => {
 renderGrid();
 if(inventoryData.length > 0) {
     selectItem(inventoryData[0]);
+}// Register Service Worker for PWA App Experience
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker Registered!'))
+            .catch(err => console.log('Service Worker Failed!', err));
+    });
 }
