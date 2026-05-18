@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Inventory Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <div class="left-panel">
+            <div class="panel-header">
+                <h2><i class="fa-solid fa-users"></i> Lady List</h2>
+                <div class="header-actions">
+                    <span id="item-count">0 Items</span>
+                    <button id="add-btn" class="add-button" title="Add New Lady">
+                        <i class="fa-solid fa-plus"></i> Add New
+                    </button>
+                </div>
+            </div>
+            
+            <div class="item-grid" id="item-grid">
+                </div>
+        </div>
+
+        <div class="right-panel" id="detail-panel">
+            <div class="detail-container">
+                
+                <div class="edit-name-section">
+                    <input type="text" id="detail-name" value="Select an Item" placeholder="Item Name">
+                </div>
+
+                <div class="image-preview-wrapper">
+                    <img id="detail-image" src="https://via.placeholder.com/600x400?text=No+Image+Selected" alt="Preview">
+                    <label for="image-upload" class="replace-btn">
+                        <i class="fa-solid fa-camera"></i> Replace Image
+                    </label>
+                    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                </div>
+
+                <div class="status-section">
+                    <select id="detail-status">
+                        <option value="အခန်းဝင်ရန်အသင့်ရှိသည်။">အခန်းဝင်ရန်အသင့်ရှိသည်။</option>
+                        <option value="အခန်းဝင်နေသဖြင့် မအားပါ။">အခန်းဝင်နေသဖြင့် မအားပါ။</option>
+                        <option value="ခွင့်ယူထားပါသည်။">ခွင့်ယူထားပါသည်။</option>
+                        <option value="ခွင့်ရက်ရှည် နားရက်ယူထားပါသည်။">ခွင့်ရက်ရှည် နားရက်ယူထားပါသည်။</option>
+                        <option value="ကျန်းမာရေးကြောင့် အခန်းမဝင်နိုင်ပါ။">ကျန်းမာရေးကြောင့် အခန်းမဝင်နိုင်ပါ။</option>
+                    </select>
+                </div>
+
+                <div class="action-buttons-group">
+                    <button id="save-btn" class="save-button">
+                        <i class="fa-solid fa-floppy-disk"></i> Save Data
+                    </button>
+                    
+                    <button id="delete-btn" class="delete-button" title="Delete Item">
+                        <i class="fa-solid fa-trash-can"></i> Delete
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

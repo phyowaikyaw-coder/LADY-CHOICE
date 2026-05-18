@@ -1,0 +1,287 @@
+/* ==========================================================================
+   1. Reset & Base Setup
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --bg-dark: #0A192F;
+    --bg-panel: #112240;
+    --gold: #C5A021;
+    --gold-light: #E2C275;
+    --text-light: #E6F1FF;
+    --text-muted: #8892B0;
+    --border-color: rgba(197, 160, 33, 0.2);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   2. Main App Layout
+   ========================================================================== */
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* ==========================================================================
+   3. Left Panel (Lady List Grid + Scroll Bar)
+   ========================================================================== */
+.left-panel {
+    width: 50%; 
+    height: 100%;
+    background-color: var(--bg-dark);
+    border-right: 3px solid var(--gold); 
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    padding: 20px;
+    background-color: var(--bg-panel);
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 {
+    color: var(--gold-light);
+    font-size: 20px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#item-count {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.add-button {
+    background-color: var(--gold);
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s;
+}
+
+.add-button:hover {
+    background-color: var(--gold-light);
+}
+
+.item-grid {
+    flex: 1;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.item-grid::-webkit-scrollbar {
+    width: 8px;
+}
+.item-grid::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+.item-grid::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 4px;
+}
+
+.grid-item {
+    background-color: #fff; 
+    border: 2px solid var(--gold);
+    border-radius: 16px; 
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 3 / 4; 
+    transition: all 0.3s ease;
+}
+
+.grid-item:hover, .grid-item.active {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(197, 160, 33, 0.4);
+}
+
+.grid-item img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: opacity 0.3s ease;
+}
+
+.grid-item p {
+    background-color: #fff;
+    color: #000; 
+    border: 1px solid var(--gold);
+    border-radius: 20px; 
+    padding: 3px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   4. Right Panel (Detail Pane)
+   ========================================================================== */
+.right-panel {
+    width: 50%; 
+    height: 100%;
+    background-color: var(--bg-dark); 
+    overflow-y: auto;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.detail-container {
+    width: 100%;
+    max-width: 450px; 
+    display: flex;
+    flex-direction: column;
+    gap: 25px; 
+}
+
+/* Item Name ခေါင်းစဉ် */
+.edit-name-section input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-size: 36px;
+    font-weight: bold;
+    padding: 5px 0;
+    color: var(--gold-light);
+    outline: none;
+    text-align: center;
+}
+
+/* True Portrait (4x6) Wrapper */
+.image-preview-wrapper {
+    position: relative;
+    width: 100%;           
+    aspect-ratio: 3 / 4;   
+    border-radius: 24px;   
+    overflow: hidden;
+    border: 3px solid var(--gold); 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background-color: #b4c6fc; 
+}
+
+.image-preview-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     
+    transition: opacity 0.3s ease;
+}
+
+/* Replace Image Button */
+.replace-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(197, 160, 33, 0.95);
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* Status Selection Box */
+.status-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    background-color: #fff;
+    border: 2px solid var(--gold);
+    color: #000;
+    padding: 14px 10px; /* မြန်မာစာလုံးရှည်များအတွက် Padding အနည်းငယ်လျှော့ထားပါသည် */
+    border-radius: 25px; 
+    font-size: 16px; /* စာလုံးအရွယ်အစားကို ပုံမှန်အနေအထား ညှိထားပါသည် */
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    appearance: none; 
+    -webkit-appearance: none;
+}
+
+/* Action Buttons */
+.action-buttons-group {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.save-button {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: #000;
+    border: none;
+    padding: 15px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.save-button:hover {
+    transform: scale(0.98);
+}
+
+.delete-button {
+    background: #FF4A4A;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.delete-button:hover {
+    background: #D32F2F;
+    transform: scale(0.98);
+}
+
+/* Available မဟုတ်လျှင် ပုံကို မှိန်ချပေးမည့် Style */
+.not-available {
+    opacity: 0.4 !important; 
+    filter: grayscale(30%);   
+}
